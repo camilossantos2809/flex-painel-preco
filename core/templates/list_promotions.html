@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Painel de Preços{% endblock %}
+
+{% block content %}
+{% for promo in promotions %}
+    {{ promo.prod.cod_barra }}
+    {{promo.image}}
+{% endfor %}
+{% endblock %}

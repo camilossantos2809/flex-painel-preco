@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Painel de Preços{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% for screen in screens %}
+    <div class="col s12 m6 l4">
+        <div class="card hoverable">
+            <div class="card-image">
+                <img src="{{MEDIA_URL}}{{ screen.background }}" alt="teste">
+            </div>
+            <div class="card-content">
+                <p>{{ screen.descricao }}</p>
+            </div>
+            <div class="card-action">
+                <a href="#" class="waves-effect waves-light red-text">
+                    <i class="material-icons">edit</i>
+                    Editar
+                </a>
+                <a href="{% url 'promotion' screen.cod %}" class="waves-effect waves-light red-text">
+                    <i class="material-icons">check</i>
+                    Abrir
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="fixed-action-btn">
+    <a href="{% url 'add_screen' %}" class="btn-floating btn-large red">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
+
+<script>
+
+</script>
+{% endblock %}

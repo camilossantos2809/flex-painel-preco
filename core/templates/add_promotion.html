@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Painel de Preços{% endblock %}
+
+{% block content %}
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input id="produto" name="produto" type="number" class="validate">
+                <label for="produto">Produto</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="screen" name="screen" type="number" class="validate">
+                <label for="screen">Tela</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="file-field input-field col s12">
+                <div class="btn">
+                    <span>Imagem</span>
+                    <input type="file" name="image">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+        <button type="submit">Gravar</button>
+    </form>
+</div>
+{% endblock %}

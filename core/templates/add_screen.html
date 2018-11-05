@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Painel de Preços{% endblock %}
+
+{% block content %}
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <select name="unid">
+                    <option value="" disabled selected>Escolha uma opção</option>
+                    {% for unid in unidades %}
+                    <option value="{{unid.cod}}">{{unid.cod}} - {{unid.nome}}</option>
+                    {% endfor %}
+                </select>
+                <label>Unidade</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="desc" name="desc" type="text" class="validate">
+                <label for="desc">Descrição</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6">
+                <input id="time-promotion" name="time-promotion" type="number" class="validate">
+                <label for="time-promotion">Tempo (segundos) por produto em promoção</label>
+            </div>
+            <div class="input-field col s12 m6">
+                <input id="reload-page" name="reload-page" type="number" class="validate">
+                <label for="reload-page">Tempo (minutos) para atualizar a página</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="file-field input-field col s12">
+                <div class="btn">
+                    <span>Selecionar</span>
+                    <input type="file" name="image">
+                </div>
+                <div class="file-path-wrapper">
+                        <label for="select-image">Imagem de plano de fundo</label>
+                    <input id="select-image" class="file-path validate" type="text">
+                    
+                </div>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light indigo" type="submit">Gravar
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
+{% endblock %}

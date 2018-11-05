@@ -1,0 +1,44 @@
+{% extends 'base-screen.html' %}
+{% load static %}
+
+{% block style %}
+    body {
+        background-image: url("{{ MEDIA_URL }}{{ screen.background }}");
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/promotion.css' %}">
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <div id="descricao"></div>
+    <img id="image" alt="img-prod"/>
+    <div id="preco">R$ </div>
+</div>
+
+<script src="{% static 'js/promotion.js' %}"></script>
+
+<script>
+    produtos = []
+    {% for promo in promotions %}
+        console.log('{{promo.prod.prun}}')
+        produtos.push({
+            name: '{{ promo.prod.descricao_pdv }}',
+            preco: Number('{{ promo.prod.prun.all.0.preco }}').toFixed(2),
+            image: '{{MEDIA_URL}}{{ promo.image }}'
+        })
+    {% endfor %}
+    console.log(produtos)
+
+    idInterval = setInterval(loadPromotion, 10000)
+    
+    idIntervalReloadPage = setInterval(reloadPage, 50000)
+    function reloadPage() {
+        document.location.reload(false)
+    }
+</script>
+{% endblock %}

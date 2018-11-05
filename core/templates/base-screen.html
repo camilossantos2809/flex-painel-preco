@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Painel Preços</title>
+    <style>
+        @font-face {
+            font-family: 'a-song-for-jennifer';
+            src: url("{% static 'font/a-song-for-jennifer.ttf' %}")
+        }
+        {% block style %}
+        {% endblock %}
+    </style>
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+.wrapper {
+    display: grid;
+    grid-auto-rows: minmax(200px, 235px);
+}
+
+#descricao {
+    position: relative;
+    color: white;
+    text-align: center;
+    font-size: 100px;
+    font-family: 'a-song-for-jennifer'
+}
+
+#image {
+    align-self: center;
+    justify-self: center;
+    width: 650px;
+    height: 370px;
+}
+
+#preco {
+    color: white;
+    text-align: center;
+    font-size: 100px;
+    align-self: flex-end;
+    font-family: 'a-song-for-jennifer';
+}
