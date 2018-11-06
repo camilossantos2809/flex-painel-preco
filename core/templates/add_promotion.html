@@ -9,11 +9,17 @@
         {% csrf_token %}
         <div class="row">
             <div class="input-field col s12 m6">
-                <input id="produto" name="produto" type="number" class="validate">
+                <a class="prefix waves-effect waves-light btn-flat modal-trigger" href="#modal-prod">
+                    <i class="material-icons">search</i>
+                </a>
+                <input id="produto" name="produto" type="number" class="validate" required>
                 <label for="produto">Produto</label>
             </div>
             <div class="input-field col s12 m6">
-                <input id="screen" name="screen" type="number" class="validate">
+                <a id="search-screen" class="prefix waves-effect waves-light btn-flat">
+                    <i class="material-icons">search</i>
+                </a>
+                <input id="screen" name="screen" type="number" class="validate" required>
                 <label for="screen">Tela</label>
             </div>
         </div>
@@ -21,14 +27,25 @@
             <div class="file-field input-field col s12">
                 <div class="btn">
                     <span>Imagem</span>
-                    <input type="file" name="image">
+                    <input type="file" name="image" required>
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                 </div>
             </div>
         </div>
-        <button type="submit">Gravar</button>
+        <div class="fixed-action-btn">
+            <button type="submit" class="btn-floating btn-large red waves-effect waves-light">
+                <i class="large material-icons">save</i>
+            </button>
+        </div>
     </form>
 </div>
+
+{% include 'search_products.html' %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/addPromotion.js' %}"></script>
 {% endblock %}

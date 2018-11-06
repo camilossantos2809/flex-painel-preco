@@ -8,7 +8,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">
-            <div class="input-field col s12 m6">
+            <div class="input-field col s12 m6 l3">
                 <select name="unid">
                     <option value="" disabled selected>Escolha uma opção</option>
                     {% for unid in unidades %}
@@ -17,17 +17,15 @@
                 </select>
                 <label>Unidade</label>
             </div>
-            <div class="input-field col s12 m6">
+            <div class="input-field col s12 m6 l3">
                 <input id="desc" name="desc" type="text" class="validate">
                 <label for="desc">Descrição</label>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m6">
+            <div class="input-field col s12 m6 l3">
                 <input id="time-promotion" name="time-promotion" type="number" class="validate">
                 <label for="time-promotion">Tempo (segundos) por produto em promoção</label>
             </div>
-            <div class="input-field col s12 m6">
+            <div class="input-field col s12 m6 l3">
                 <input id="reload-page" name="reload-page" type="number" class="validate">
                 <label for="reload-page">Tempo (minutos) para atualizar a página</label>
             </div>

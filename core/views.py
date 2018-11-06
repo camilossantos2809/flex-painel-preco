@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import Screen, PromotionsProd, Produtos, Unidades
 
 
@@ -27,6 +29,15 @@ def add_promotion(request):
             request, f'Novo produto {prod_promo.prod.cod} adicionado')
         return render(request, 'add_promotion.html')
     return render(request, 'add_promotion.html')
+
+
+def list_products(request):
+    products_list = Produtos.objects.values(
+        'cod', 'descricao', 'cod_barra').all()
+    paginator = Paginator(products_list, 25)
+    page = request.GET.get('page')
+    products = paginator.get_page(page)
+    return JsonResponse(list(products), safe=False)
 
 
 def add_screen(request):

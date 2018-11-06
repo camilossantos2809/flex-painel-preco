@@ -1,0 +1,37 @@
+{% load static %}
+<div id="modal-prod" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <table class="centered highlight">
+            <thead>
+                <tr>
+                    <th>Cod</th>
+                    <th>CodBarras</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody id="body-prod">
+<!-- <label>
+    <input id="123" type="radio" name="group-prod" class="with-gap" />
+    <span>123</span>
+</label> -->
+            </tbody>
+        </table>
+
+        <ul class="pagination">
+            <li class="waves-effect"><a id=previous>
+                    <i class="material-icons">chevron_left</i>
+                </a></li>
+
+            <li class="waves-effect"><a id="next">
+                    <i class="material-icons">chevron_right</i>
+                </a></li>
+        </ul>
+    </div>
+
+    <div class="modal-footer">
+
+        <a id="select-prod" class="modal-close waves-effect waves-green btn-flat">Selecionar</a>
+    </div>
+</div>
+
+<script src="{% static 'js/searchProducts.js' %}"></script>

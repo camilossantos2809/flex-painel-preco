@@ -25,14 +25,13 @@
 <script>
     produtos = []
     {% for promo in promotions %}
-        console.log('{{promo.prod.prun}}')
         produtos.push({
             name: '{{ promo.prod.descricao_pdv }}',
             preco: Number('{{ promo.prod.prun.all.0.preco }}').toFixed(2),
             image: '{{MEDIA_URL}}{{ promo.image }}'
         })
     {% endfor %}
-    console.log(produtos)
+    // console.log(produtos)
 
     idInterval = setInterval(loadPromotion, 10000)
     
