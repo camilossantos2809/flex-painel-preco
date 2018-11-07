@@ -16,25 +16,23 @@
                 <a class="prefix waves-effect waves-light btn-flat modal-trigger" href="#modal-prod">
                     <i class="material-icons">search</i>
                 </a>
-                <input id="produto" name="produto" type="number" class="validate" required>
+                <input id="produto" value="{{promo.prod.cod}}" name="produto" type="number" class="validate" required>
                 <label for="produto">Produto</label>
             </div>
             <div class="input-field col s12 m6 l4">
                 <a id="search-screen" class="prefix waves-effect waves-light btn-flat">
                     <i class="material-icons">search</i>
                 </a>
-                <input id="screen" name="screen" type="number" class="validate" required>
+                <input id="screen" value="{{promo.screen.cod}}" name="screen" type="number" class="validate" required>
                 <label for="screen">Tela</label>
             </div>
-        <!-- </div> -->
-        <!-- <div class="row"> -->
             <div class="file-field input-field col s12 m6 l4">
                 <div class="btn">
                     <span>Imagem</span>
-                    <input type="file" name="image" required>
+                    <input type="file" name="image" value="{{promo.image}}">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
+                    <input class="file-path validate" type="text" value="{{promo.image}}">
                 </div>
             </div>
         </div>

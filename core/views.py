@@ -17,18 +17,23 @@ def screen_promotion(request, screen):
     return render(request, 'promotion.html', {'promotions': promotions, 'screen': screen})
 
 
-def add_promotion(request):
+def add_promotion(request, id=None):
+    prod_promo = None
+    if id:
+        prod_promo = PromotionsProd.objects.get(id=id)
+
     if request.method == 'POST' and request.FILES['image']:
-        prod_promo = PromotionsProd()
+        if not id:
+            prod_promo = PromotionsProd()
         prod_promo.image = request.FILES['image']
         prod_promo.prod = Produtos.objects.filter(
             cod=request.POST['produto']).get()
         prod_promo.screen = Screen.objects.get(cod=request.POST['screen'])
         prod_promo.save()
         messages.success(
-            request, f'Novo produto {prod_promo.prod.cod} adicionado')
-        return render(request, 'add_promotion.html')
-    return render(request, 'add_promotion.html')
+            request, f'Produto {prod_promo.prod.cod} gravado')
+        return render(request, 'add_promotion.html', {'promo': prod_promo})
+    return render(request, 'add_promotion.html', {'promo': prod_promo})
 
 
 def list_products(request):

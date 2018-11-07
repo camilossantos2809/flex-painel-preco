@@ -4,10 +4,50 @@
 {% block title %}Painel de Preços{% endblock %}
 
 {% block content %}
-{% for promo in promotions %}
-    {{ promo.prod.cod_barra }}
-    {{promo.image}}
-{% endfor %}
+<table class="centered highlight responsive-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Tela</th>
+            <th>CodProd</th>
+            <th>CodBarras</th>
+            <th>Descr PDV</th>
+            <th>Descrição</th>
+            <th>Complemento</th>
+            <th>Marca</th>
+            <th>Dpto</th>
+            <th>Grupo</th>
+            <th>Imagem</th>
+        </tr>
+    </thead>
+    <tbody id="body-prod">
+        {% for promo in promotions %}
+        <tr>
+            <td>
+                <a class="btn-flat" href="promotion/edit/{{promo.id}}">
+                    <i class="material-icons">edit</i>
+                </a>
+            </td>
+            <td>
+                <a class="btn-flat" href="promotion/delete/{{promo.id}}">
+                    <i class="material-icons">delete</i>
+                </a>
+            </td>
+            <td>{{promo.screen.descricao}}</td>
+            <td>{{promo.prod.cod}}</td>
+            <td>{{promo.prod.cod_barra}}</td>
+            <td>{{promo.prod.descricao_pdv}}</td>
+            <td>{{promo.prod.descricao}}</td>
+            <td>{{promo.prod.descricao_comp}}</td>
+            <td>{{promo.prod.marca}}</td>
+            <td>{{promo.prod.dpto_cod}}</td>
+            <td>{{promo.prod.grupo_nome}}</td>
+            <td>{{promo.image}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 <div class="fixed-action-btn">
     <a href="{% url 'add_promotion' %}" class="btn-floating btn-large red">
