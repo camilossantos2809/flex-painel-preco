@@ -1,27 +1,36 @@
-.wrapper {
-    display: grid;
-    grid-auto-rows: minmax(200px, 235px);
+body {
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 #descricao {
-    position: relative;
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
     color: white;
-    text-align: center;
-    font-size: 100px;
+    font-size: 750%;
     font-family: 'a-song-for-jennifer'
 }
 
 #image {
-    align-self: center;
-    justify-self: center;
-    width: 650px;
-    height: 370px;
+    position: fixed;
+    left: 50%;
+    top: 47.5%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 49%;
+    height: 51%;
 }
 
 #preco {
+    position: fixed;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
     color: white;
-    text-align: center;
-    font-size: 100px;
+    font-size: 750%;
     align-self: flex-end;
     font-family: 'a-song-for-jennifer';
 }
