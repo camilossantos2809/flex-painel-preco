@@ -1,0 +1,28 @@
+{% extends 'base-screen.html' %}
+{% load static %}
+
+{% block style %}
+body {
+background-image: url("{{ MEDIA_URL }}{{ screen.background_list }}");
+}
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/screenPricesList.css' %}">
+{% endblock %}
+{% block content %}
+<div id="wrapper" class="wrapper"></div>
+
+<script src="{% static 'js/screenPricesList.js' %}"></script>
+
+<script>
+    let redirectToPath = 'screen/promotion/{{ screen.cod }}'
+    let produtos = []
+    {% for promo in promotions %}
+    produtos.push({
+        name: '{{ promo.prod.descricao_pdv|slice:":25" }}' +' R$ '+ Number('{{ promo.prod.prun.all.0.preco }}').toFixed(2)
+    })
+    {% endfor %}
+
+    idInterval = setInterval(loadPromotion, 10000)
+</script>
+{% endblock %}

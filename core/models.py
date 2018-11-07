@@ -82,9 +82,8 @@ class Screen(models.Model):
     cod = models.AutoField(primary_key=True)
     unid = models.ForeignKey(Unidades, on_delete=models.DO_NOTHING)
     descricao = models.CharField(unique=True, max_length=30, null=False)
+    background_list = models.FileField(upload_to='background/')
     background = models.FileField(upload_to='background/')
-    minutes_reload_page = models.IntegerField(
-        null=False, help_text="Quantia de minutos para atualização automática da página")
     seconds_promotion = models.IntegerField(
         null=False, help_text="Quantia de segundos que cada promoção será mantida na tela")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -101,9 +100,12 @@ class PromotionsProd(models.Model):
     prod = models.ForeignKey(Produtos, on_delete=models.DO_NOTHING)
     screen = models.ForeignKey(
         Screen, on_delete=models.CASCADE, related_name='promotions')
-    image = models.FileField(upload_to='products/')
+    image = models.FileField(upload_to='products/', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    show_promotion = models.BooleanField(default=False)
+    show_list = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'promotions_prod'
+        ordering = ('screen', 'prod',)

@@ -1,0 +1,37 @@
+body {
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wrapper {
+    /* border-style: solid;
+    border-width: 1px; */
+    display: grid;
+    grid-template-rows: 8em 28.5em 8em;
+    justify-items: center;
+    align-items: center;
+}
+
+#descricao {
+    /* border-style: solid;
+    border-width: 1px; */
+    color: white;
+    font-size: 7.5em;
+    font-family: 'a-song-for-jennifer';
+}
+
+#image {
+    /* border-style: solid;
+    border-width: 1px; */
+    width: 41.5em;
+    height: 24em;
+}
+
+#preco {
+    /* border-style: solid;
+    border-width: 1px; */
+    color: white;
+    font-size: 7.5em;
+    font-family: 'a-song-for-jennifer';
+}

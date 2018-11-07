@@ -6,6 +6,9 @@ run:
 migrate:
 	python manage.py migrate
 
+make-migrations:
+	python manage.py makemigrations
+
 static:
 	python manage.py collectstatic
 

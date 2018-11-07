@@ -7,7 +7,7 @@
     }
 {% endblock %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/promotion.css' %}">
+<link rel="stylesheet" href="{% static 'css/screenPromotion.css' %}">
 {% endblock %}
 {% block content %}
 <div class="wrapper">
@@ -16,10 +16,12 @@
     <div id="preco">R$ </div>
 </div>
 
-<script src="{% static 'js/promotion.js' %}"></script>
+<script src="{% static 'js/screenPromotion.js' %}"></script>
 
 <script>
-    produtos = []
+    let redirectToPath = 'screen/prices-list/{{ screen.cod }}'
+    let produtos = []
+
     {% for promo in promotions %}
         produtos.push({
             name: '{{ promo.prod.descricao_pdv }}',
@@ -27,13 +29,7 @@
             image: '{{MEDIA_URL}}{{ promo.image }}'
         })
     {% endfor %}
-    // console.log(produtos)
 
     idInterval = setInterval(loadPromotion, 10000)
-    
-    idIntervalReloadPage = setInterval(reloadPage, 50000)
-    function reloadPage() {
-        document.location.reload(false)
-    }
 </script>
 {% endblock %}

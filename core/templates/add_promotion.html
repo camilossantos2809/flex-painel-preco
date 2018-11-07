@@ -23,18 +23,37 @@
                 <a id="search-screen" class="prefix waves-effect waves-light btn-flat">
                     <i class="material-icons">search</i>
                 </a>
-                <input id="screen" value="{{promo.screen.cod}}" name="screen" type="number" class="validate" required>
+                <input id="screen" value="{{ promo.screen.cod }}" name="screen" type="number" class="validate" required>
                 <label for="screen">Tela</label>
             </div>
-            <div class="file-field input-field col s12 m6 l4">
-                <div class="btn">
-                    <span>Imagem</span>
-                    <input type="file" name="image" value="{{promo.image}}">
+            <div class="input-field col s12 m6 l3">
+                <div class="switch">
+                    <label>
+                        <input id="show-promotion" name="show-promotion" type="checkbox" {% if promo.show_promotion %} checked {% endif %}>
+                        <span class="lever"></span>
+                        Oferta
+                    </label>
                 </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" value="{{promo.image}}">
+                <div class="switch">
+                    <label>
+                        <input id="show-list" name="show-list" type="checkbox" {% if promo.show_list %} checked {% endif %}>
+                        <span class="lever"></span>
+                        Lista de preços
+                    </label>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="file-field input-field col s12 m6">
+                <div class="btn indigo">
+                    <span>Nova Imagem</span>
+                    <input type="file" name="image">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <img class="col s12 m6 responsive-img" src="{{MEDIA_URL}}{{promo.image}}" alt="image">
         </div>
         <div class="fixed-action-btn tooltipped" data-position="left" data-tooltip="Gravar">
             <button type="submit" class="btn-floating btn-large red waves-effect waves-light">

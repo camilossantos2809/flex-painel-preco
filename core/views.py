@@ -13,8 +13,15 @@ def index(request):
 def screen_promotion(request, screen):
     screen = Screen.objects.filter(cod=screen).get()
     promotions = PromotionsProd.objects \
-        .filter(screen=screen, prod__prun__unid=screen.unid.cod)
-    return render(request, 'promotion.html', {'promotions': promotions, 'screen': screen})
+        .filter(screen=screen, prod__prun__unid=screen.unid.cod, show_promotion=True)
+    return render(request, 'screen_promotion.html', {'promotions': promotions, 'screen': screen})
+
+
+def screen_prices_list(request, screen):
+    screen = Screen.objects.filter(cod=screen).get()
+    promotions = PromotionsProd.objects \
+        .filter(screen=screen, prod__prun__unid=screen.unid.cod, show_list=True)
+    return render(request, 'screen_prices_list.html', {'promotions': promotions, 'screen': screen})
 
 
 def add_promotion(request, id=None):
@@ -22,13 +29,25 @@ def add_promotion(request, id=None):
     if id:
         prod_promo = PromotionsProd.objects.get(id=id)
 
-    if request.method == 'POST' and request.FILES['image']:
+    if request.method == 'POST':
         if not id:
             prod_promo = PromotionsProd()
-        prod_promo.image = request.FILES['image']
+        if 'image' in request.FILES:
+            prod_promo.image = request.FILES['image']
         prod_promo.prod = Produtos.objects.filter(
             cod=request.POST['produto']).get()
         prod_promo.screen = Screen.objects.get(cod=request.POST['screen'])
+
+        if 'show-list' in request.POST:
+            prod_promo.show_list = True
+        else:
+            prod_promo.show_list = False
+
+        if 'show-promotion' in request.POST:
+            prod_promo.show_promotion = True
+        else:
+            prod_promo.show_promotion = False
+
         prod_promo.save()
         messages.success(
             request, f'Produto {prod_promo.prod.cod} gravado')
@@ -49,13 +68,13 @@ def list_products(request):
 
 def add_screen(request):
     unidades = Unidades.objects.all()
-    if request.method == 'POST' and request.FILES['image']:
+    if request.method == 'POST' and request.FILES['image-promo'] and request.FILES['image-list']:
         screen = Screen()
         screen.unid = Unidades.objects.filter(cod=request.POST['unid']).get()
         screen.descricao = request.POST['desc']
-        screen.minutes_reload_page = request.POST['reload-page']
         screen.seconds_promotion = request.POST['time-promotion']
-        screen.background = request.FILES['image']
+        screen.background = request.FILES['image-promo']
+        screen.background_list = request.FILES['image-list']
         screen.save()
         messages.success(request, f"Nova configuração de tela adicionada")
     return render(request, 'add_screen.html', {'unidades': unidades})
