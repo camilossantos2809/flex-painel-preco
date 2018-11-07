@@ -33,7 +33,9 @@ def add_promotion(request):
 
 def list_products(request):
     products_list = Produtos.objects.values(
-        'cod', 'descricao', 'cod_barra').all()
+        'cod',  'cod_barra', 'descricao', 'descricao_comp', 'marca', 'dpto_cod',
+        'grupo_nome'
+    ).all()
     paginator = Paginator(products_list, 25)
     page = request.GET.get('page')
     products = paginator.get_page(page)

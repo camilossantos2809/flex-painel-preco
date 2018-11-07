@@ -8,6 +8,8 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    {% block head %}
+    {% endblock %}
 </head>
 
 <body>
@@ -27,25 +29,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script>
-      {% if messages %}
-          {% for message in messages %}
-          
-          if ('{{message.tags}}' == 'success') {
-              var tag = 'green center-align'
-          } else if ('{{message.tags}}' == 'error'){
-              var tag = 'red black-text center-align'
-          } else if ('{{message.tags}}'== 'warning'){
-              var tag = 'yellow black-text center-align'
-          }
-          
-          M.toast({html: '{{message}}', classes: tag, displayLength: 10000 })
-          
-          {% endfor %}
-      {% endif %}
-      </script>
-      
-      {% block script %}
-      {% endblock %}
+        {% if messages %}
+        {% for message in messages %}
+
+        if ('{{message.tags}}' == 'success') {
+            var tag = 'green center-align'
+        } else if ('{{message.tags}}' == 'error') {
+            var tag = 'red black-text center-align'
+        } else if ('{{message.tags}}' == 'warning') {
+            var tag = 'yellow black-text center-align'
+        }
+
+        M.toast({ html: '{{message}}', classes: tag, displayLength: 10000 })
+
+        {% endfor %}
+        {% endif %}
+
+    </script>
+
+    {% block script %}
+    {% endblock %}
 </body>
 
 </html>

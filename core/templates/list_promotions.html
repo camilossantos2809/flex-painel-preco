@@ -8,4 +8,10 @@
     {{ promo.prod.cod_barra }}
     {{promo.image}}
 {% endfor %}
+
+<div class="fixed-action-btn">
+    <a href="{% url 'add_promotion' %}" class="btn-floating btn-large red">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
 {% endblock %}

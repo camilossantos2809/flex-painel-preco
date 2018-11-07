@@ -1,8 +1,8 @@
 var actualPage = 1
 var produtos = []
-    
-function getProducts() {
-    fetch('/products?page='+actualPage, {
+
+function getProducts () {
+    fetch('/products?page=' + actualPage, {
         headers: new Headers({
             'Content-Type': 'application/json'
         })
@@ -13,42 +13,50 @@ function getProducts() {
         })
 }
 
-function buildRowsTable() {
+function buildRowsTable () {
     clearAll()
 
     bodyTable = document.getElementById('body-prod')
 
-    // TODO: código com input radio
     produtos.then(prod => {
         prod.forEach(el => {
             var tr = document.createElement('tr')
-            var tdCod = document.createElement('td')
-            var tdCodBarra = document.createElement('td')
-            var tdDescricao = document.createElement('td')
-            tdCod.innerHTML = el.cod
-            tdCodBarra.innerHTML = el.cod_barra
-            tdDescricao.innerHTML = el.descricao
-            
-            tr.appendChild(tdCod)
-            tr.appendChild(tdCodBarra)
-            tr.appendChild(tdDescricao)
+            var label = document.createElement('label')
+            var input = document.createElement('input')
+            input.setAttribute('id', el['cod'])
+            input.setAttribute('type', 'radio')
+            input.setAttribute('name', 'group-prod')
+            input.setAttribute('class', 'with-gap')
+            label.appendChild(input)
+            var span = document.createElement('span')
+            span.innerHTML = el['cod']
+            label.appendChild(span)
+            tr.appendChild(label)
 
+            for (const key in el) {
+                if (el.hasOwnProperty(key) && key !== 'cod') {
+                    const value = el[key];
+                    var td = document.createElement('td')
+                    td.innerHTML = value
+                    tr.appendChild(td)
+                }
+            }
             bodyTable.appendChild(tr)
         });
-        
+
     });
 }
 
-function clearAll(){
+function clearAll () {
     document.getElementById('body-prod').innerHTML = ""
 }
-function nextPage() {
+function nextPage () {
     actualPage++
     getProducts()
     console.log(actualPage)
 }
 
-function previousPage() {
+function previousPage () {
     if (actualPage > 1) {
         actualPage--
     }
