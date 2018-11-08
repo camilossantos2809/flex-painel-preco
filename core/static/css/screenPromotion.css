@@ -2,36 +2,35 @@ body {
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.wrapper {
-    /* border-style: solid;
-    border-width: 1px; */
-    display: grid;
-    grid-template-rows: 8em 28.5em 8em;
-    justify-items: center;
-    align-items: center;
+    position: relative;
 }
 
 #descricao {
-    /* border-style: solid;
-    border-width: 1px; */
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
     color: white;
-    font-size: 7.5em;
-    font-family: 'a-song-for-jennifer';
+    font-size: 750%;
+    font-family: 'a-song-for-jennifer'
 }
 
 #image {
-    /* border-style: solid;
-    border-width: 1px; */
-    width: 41.5em;
-    height: 24em;
+    position: fixed;
+    left: 50%;
+    top: 47.5%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 49%;
+    height: 51%;
 }
 
 #preco {
-    /* border-style: solid;
-    border-width: 1px; */
+    position: fixed;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
     color: white;
-    font-size: 7.5em;
+    font-size: 750%;
+    align-self: flex-end;
     font-family: 'a-song-for-jennifer';
 }
