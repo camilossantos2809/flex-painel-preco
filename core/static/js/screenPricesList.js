@@ -1,12 +1,11 @@
 var control = 0;
-var maxLines = 8;
 var divWrapper = document.getElementById('wrapper')
 
 function loadPromotion() {
     divWrapper.innerHTML = ''
-    if (control + 1 > produtos.length) {
+    if (control == 1) {
         control = 0
-        // location.pathname = redirectToPath
+        location.pathname = redirectToPath
     }
 
     produtos.forEach(element => {

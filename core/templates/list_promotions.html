@@ -18,7 +18,9 @@
             <th>Marca</th>
             <th>Dpto</th>
             <th>Grupo</th>
-            <th>Imagem</th>
+            <th>Img</th>
+            <th>Of.</th>
+            <th>Lista</th>
         </tr>
     </thead>
     <tbody id="body-prod">
@@ -43,7 +45,9 @@
             <td>{{promo.prod.marca}}</td>
             <td>{{promo.prod.dpto_cod}}</td>
             <td>{{promo.prod.grupo_nome}}</td>
-            <td>{{promo.image}}</td>
+            <td>{% if promo.image %} <i class="material-icons">check</i>{% endif %}</td>
+            <td>{% if promo.show_promotion %} <i class="material-icons">check</i>{% endif %}</td>
+            <td>{% if promo.show_list %} <i class="material-icons">check</i>{% endif %}</td>
         </tr>
         {% endfor %}
     </tbody>
