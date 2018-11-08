@@ -13,14 +13,16 @@ def index(request):
 def screen_promotion(request, screen):
     screen = Screen.objects.filter(cod=screen).get()
     promotions = PromotionsProd.objects \
-        .filter(screen=screen, prod__prun__unid=screen.unid.cod, show_promotion=True)
+        .filter(screen=screen, prod__prun__unid=screen.unid.cod,
+                show_promotion=True, image__isnull=False)
     return render(request, 'screen_promotion.html', {'promotions': promotions, 'screen': screen})
 
 
 def screen_prices_list(request, screen):
     screen = Screen.objects.filter(cod=screen).get()
     promotions = PromotionsProd.objects \
-        .filter(screen=screen, prod__prun__unid=screen.unid.cod, show_list=True)
+        .filter(screen=screen, prod__prun__unid=screen.unid.cod,
+                show_list=True, prod__prun__preco__gt=0)
     return render(request, 'screen_prices_list.html', {'promotions': promotions, 'screen': screen})
 
 

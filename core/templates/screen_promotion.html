@@ -24,7 +24,7 @@
 
     {% for promo in promotions %}
         produtos.push({
-            name: '{{ promo.prod.descricao_pdv }}',
+            name: '{{ promo.prod.descricao_pdv|slice:":25" }}',
             preco: Number('{{ promo.prod.prun.all.0.preco }}').toFixed(2),
             image: '{{MEDIA_URL}}{{ promo.image }}'
         })

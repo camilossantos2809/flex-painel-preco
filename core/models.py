@@ -68,7 +68,7 @@ class Produn(models.Model):
     unid = models.ForeignKey(
         Unidades, db_column="prun_unid_codigo", on_delete=models.DO_NOTHING)
     preco = models.DecimalField(
-        db_column='prun_prvenda', decimal_places=5, max_digits=10)
+        db_column='prun_prpdv', decimal_places=5, max_digits=10)
 
     class Meta:
         managed = False
@@ -97,7 +97,7 @@ class Screen(models.Model):
 
 
 class PromotionsProd(models.Model):
-    prod = models.ForeignKey(Produtos, on_delete=models.DO_NOTHING)
+    prod = models.ForeignKey('Produtos', on_delete=models.DO_NOTHING, swappable=True)
     screen = models.ForeignKey(
         Screen, on_delete=models.CASCADE, related_name='promotions')
     image = models.FileField(upload_to='products/', null=True)
