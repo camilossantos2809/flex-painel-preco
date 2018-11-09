@@ -25,7 +25,7 @@
     </thead>
     <tbody id="body-prod">
         {% for promo in promotions %}
-        <tr>
+        <tr {{ promo.id }}>
             <td>
                 <a class="btn-flat" href="promotion/edit/{{promo.id}}">
                     <i class="material-icons">edit</i>

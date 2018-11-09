@@ -15,11 +15,11 @@
                 <p>{{ screen.descricao }}</p>
             </div>
             <div class="card-action">
-                <a href="#" class="waves-effect waves-light red-text">
+                <a href="#" class="waves-effect waves-light">
                     <i class="material-icons">edit</i>
                     Editar
                 </a>
-                <a href="{% url 'screen_promotion' screen.cod %}" class="waves-effect waves-light red-text">
+                <a href="{% url 'screen_promotion' screen.cod %}" class="waves-effect waves-light">
                     <i class="material-icons">check</i>
                     Abrir
                 </a>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="fixed-action-btn">
-    <a href="{% url 'add_screen' %}" class="btn-floating btn-large red">
+    <a href="{% url 'add_screen' %}" class="btn-floating btn-large">
         <i class="large material-icons">add</i>
     </a>
 </div>

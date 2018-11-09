@@ -4,13 +4,48 @@
         <table class="centered highlight responsive-table">
             <thead>
                 <tr>
-                    <th>Cod</th>
-                    <th>CodBarras</th>
-                    <th>Descrição</th>
-                    <th>Complemento</th>
-                    <th>Marca</th>
-                    <th>Dpto</th>
-                    <th>Grupo</th>
+                    <th>
+                        <details>
+                            <summary>Cod<i class="material-icons">search</i></summary>
+                            <input type="number" name="cod" id="cod" class="in-filter">
+                        </details>
+                    </th>
+                    <th>
+                        <details>
+                            <summary>CodBarras<i class="material-icons">search</i></summary>
+                            <input type="number" name="cod_barra" id="cod_barra" class="in-filter">
+                        </details>
+                    </th>
+                    <th>
+                        <details>
+                            <summary>Descrição<i class="material-icons">search</i></summary>
+                            <input type="text" name="descricao" id="descricao" class="in-filter">
+                        </details>
+                    </th>
+                    <th>
+                        <details>
+                            <summary>Complemento<i class="material-icons">search</i></summary>
+                            <input type="text" name="descricao_comp" id="descricao_comp" class="in-filter">
+                        </details>
+                    </th>
+                    <th>
+                        <details>
+                            <summary>Marca<i class="material-icons">search</i></summary>
+                            <input type="text" name="marca" id="marca" class="in-filter">
+                        </details>
+                    </th>
+                    <th>
+                        <details>
+                            <summary>Dpto<i class="material-icons">search</i></summary>
+                            <input type="number" name="dpto_cod" id="dpto_cod" class="in-filter">
+                        </details>
+                    </th>
+                    <th>
+                        <details>
+                            <summary>Grupo<i class="material-icons">search</i></summary>
+                            <input type="text" name="grupo_nome" id="grupo_nome" class="in-filter">
+                        </details>
+                    </th>
                 </tr>
             </thead>
             <tbody id="body-prod">

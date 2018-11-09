@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.http import JsonResponse
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .models import Screen, PromotionsProd, Produtos, Unidades
+from django.http import JsonResponse
+from django.shortcuts import render
+
+from .models import Produtos, PromotionsProd, Screen, Unidades
 
 
 def index(request):
@@ -58,13 +59,25 @@ def add_promotion(request, id=None):
 
 
 def list_products(request):
-    products_list = Produtos.objects.values(
-        'cod',  'cod_barra', 'descricao', 'descricao_comp', 'marca', 'dpto_cod',
-        'grupo_nome'
-    ).all()
+    fields = [
+        'cod', 'cod_barra', 'descricao', 'descricao_comp', 'marca',
+        'dpto_cod', 'grupo_nome'
+    ]
+
+    filters = {}
+    for field in fields:
+        if request.GET.get(field):
+            if field in ['cod', 'cod_barra']:
+                filters[f'{field}'] = request.GET.get(field)
+            else:
+                filters[f'{field}__icontains'] = request.GET[field]
+
+    products_list = Produtos.objects.filter(**filters).values(*fields)
+
     paginator = Paginator(products_list, 25)
     page = request.GET.get('page')
     products = paginator.get_page(page)
+
     return JsonResponse(list(products), safe=False)
 
 

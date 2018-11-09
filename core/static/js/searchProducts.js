@@ -1,8 +1,23 @@
 var actualPage = 1
 var produtos = []
+filterInputs = document.querySelectorAll('.in-filter')
+
+function getFilters () {
+    var filters = new URLSearchParams()
+    filterInputs.forEach(input => {
+        if (input.value != '') {
+            filters.append(input.getAttribute('name'), input.value)
+        }
+    })
+    return filters
+}
 
 function getProducts () {
-    fetch('/products?page=' + actualPage, {
+    let params = getFilters()
+    params.append('page', actualPage)
+    let url = '/products?' + params.toString()
+
+    fetch(url, {
         headers: new Headers({
             'Content-Type': 'application/json'
         })
@@ -66,6 +81,19 @@ function previousPage () {
 
 document.getElementById('next').addEventListener('click', nextPage)
 document.getElementById('previous').addEventListener('click', previousPage)
+filterInputs.forEach(elem => {
+    elem.addEventListener('keypress', event => {
+        if (event.key == 'Enter') {
+            getProducts()
+        }
+    })
+
+    elem.parentElement.addEventListener('toggle', event => {
+        if (event.srcElement.open) {
+            event.srcElement.children[1].focus()
+        }
+    })
+})
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", getProducts);
 } else {
