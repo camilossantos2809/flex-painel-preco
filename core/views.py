@@ -98,3 +98,7 @@ def add_screen(request):
 def list_promotions(request):
     promotions = PromotionsProd.objects.all()
     return render(request, 'list_promotions.html', {'promotions': promotions})
+
+
+def delete_promotion(request, id):
+    return JsonResponse(list(PromotionsProd.objects.filter(id=id).delete()), safe=False)
