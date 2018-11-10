@@ -110,3 +110,4 @@ test_*.db*
 secret_key.txt
 notes.sql
 media/
+/*/static/img/

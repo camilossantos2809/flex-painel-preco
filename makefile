@@ -48,3 +48,8 @@ coverage-html:
 coverage:
 	coverage run manage.py test
 	coverage report
+
+apache-conf:
+	sudo cp example-apache.conf /etc/apache2/sites-available/painelprecos.conf
+	sudo a2ensite painelprecos.conf
+	sudo systemctl reload apache2
