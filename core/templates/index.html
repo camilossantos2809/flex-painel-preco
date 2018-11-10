@@ -15,13 +15,14 @@
                 <p>{{ screen.descricao }}</p>
             </div>
             <div class="card-action">
-                <a href="#" class="waves-effect waves-light">
-                    <i class="material-icons">edit</i>
-                    Editar
+                <a class="tooltipped" data-tooltip="Remover" href="#" class="waves-effect waves-light">
+                    <i class="material-icons">delete</i>
                 </a>
-                <a href="{% url 'screen_promotion' screen.cod %}" class="waves-effect waves-light">
-                    <i class="material-icons">check</i>
-                    Abrir
+                <a class="tooltipped" data-tooltip="Editar" href="#" class="waves-effect waves-light">
+                    <i class="material-icons">edit</i>
+                </a>
+                <a class="tooltipped" data-tooltip="Abrir" href="{% url 'screen_promotion' screen.cod %}" class="waves-effect waves-light">
+                    <i class="material-icons">send</i>
                 </a>
             </div>
         </div>
@@ -29,7 +30,7 @@
     {% endfor %}
 </div>
 
-<div class="fixed-action-btn">
+<div class="fixed-action-btn tooltipped" data-tooltip="Adicionar Tela" data-position="top">
     <a href="{% url 'add_screen' %}" class="btn-floating btn-large">
         <i class="large material-icons">add</i>
     </a>
