@@ -15,10 +15,10 @@
                 <p>{{ screen.descricao }}</p>
             </div>
             <div class="card-action">
-                <a class="tooltipped" data-tooltip="Remover" href="#" class="waves-effect waves-light">
+                <a class="tooltipped" data-tooltip="Remover" href="{% url 'delete_screen' screen.cod %}" class="waves-effect waves-light">
                     <i class="material-icons">delete</i>
                 </a>
-                <a class="tooltipped" data-tooltip="Editar" href="#" class="waves-effect waves-light">
+                <a class="tooltipped" data-tooltip="Editar" href="{% url 'edit_screen' screen.cod %}" class="waves-effect waves-light">
                     <i class="material-icons">edit</i>
                 </a>
                 <a class="tooltipped" data-tooltip="Abrir" href="{% url 'screen_promotion' screen.cod %}" class="waves-effect waves-light">

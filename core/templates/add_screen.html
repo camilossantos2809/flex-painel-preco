@@ -12,17 +12,17 @@
                 <select name="unid">
                     <option value="" disabled selected>Escolha uma opção</option>
                     {% for unid in unidades %}
-                    <option value="{{unid.cod}}">{{unid.cod}} - {{unid.nome}}</option>
+                    <option value="{{unid.cod}}" {% if unid.cod == screen.unid.cod %}selected{% endif %}>{{unid.cod}} - {{unid.nome}}</option>
                     {% endfor %}
                 </select>
                 <label>Unidade</label>
             </div>
             <div class="input-field col s12 m6 l3">
-                <input id="desc" name="desc" type="text" class="validate">
+                <input id="desc" name="desc" type="text" class="validate" value="{{ screen.descricao }}">
                 <label for="desc">Descrição</label>
             </div>
             <div class="input-field col s12 m6 l3">
-                <input id="time-promotion" name="time-promotion" type="number" class="validate">
+                <input id="time-promotion" name="time-promotion" type="number" class="validate" value="{{ screen.seconds_promotion }}">
                 <label for="time-promotion">Segundos por produto em promoção</label>
             </div>
         </div>

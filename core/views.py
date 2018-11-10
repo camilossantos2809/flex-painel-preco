@@ -27,7 +27,7 @@ def screen_prices_list(request, screen):
     return render(request, 'screen_prices_list.html', {'promotions': promotions, 'screen': screen})
 
 
-def add_promotion(request, id=None):
+def add_update_promotion(request, id=None):
     prod_promo = None
     if id:
         prod_promo = PromotionsProd.objects.get(id=id)
@@ -81,18 +81,26 @@ def list_products(request):
     return JsonResponse(list(products), safe=False)
 
 
-def add_screen(request):
+def add_update_screen(request, id=None):
+    screen = None
     unidades = Unidades.objects.all()
-    if request.method == 'POST' and request.FILES['image-promo'] and request.FILES['image-list']:
-        screen = Screen()
+    if id:
+        screen = Screen.objects.get(cod=id)
+
+    if request.method == 'POST':
+        if not id:
+            screen = Screen()
         screen.unid = Unidades.objects.filter(cod=request.POST['unid']).get()
         screen.descricao = request.POST['desc']
         screen.seconds_promotion = request.POST['time-promotion']
-        screen.background = request.FILES['image-promo']
-        screen.background_list = request.FILES['image-list']
+        if 'image-promo' in request.FILES:
+            screen.background = request.FILES['image-promo']
+        if 'image-list' in request.FILES:
+            screen.background_list = request.FILES['image-list']
         screen.save()
-        messages.success(request, f"Nova configuração de tela adicionada")
-    return render(request, 'add_screen.html', {'unidades': unidades})
+        messages.success(request, f"Screen {screen.cod}-{screen.descricao} gravado")
+        return render(request, 'add_screen.html', {'unidades': unidades, 'screen': screen})
+    return render(request, 'add_screen.html', {'unidades': unidades, 'screen': screen})
 
 
 def list_promotions(request):
@@ -102,3 +110,7 @@ def list_promotions(request):
 
 def delete_promotion(request, id):
     return JsonResponse(list(PromotionsProd.objects.filter(id=id).delete()), safe=False)
+
+
+def delete_screen(request, id):
+    return JsonResponse(list(Screen.objects.filter(id=id).delete()), safe=False)
