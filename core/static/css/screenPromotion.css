@@ -7,12 +7,13 @@ body {
 
 #descricao {
     position: fixed;
-    left: 50%;
+    left: 0;
+    right: 0;
     top: 5%;
-    transform: translateX(-50%);
     color: white;
     font-size: 750%;
-    font-family: 'a-song-for-jennifer'
+    font-family: 'a-song-for-jennifer';
+    text-align: center;
 }
 
 #image {
@@ -27,7 +28,7 @@ body {
 #preco {
     position: fixed;
     left: 50%;
-    bottom: 5%;
+    top:85%;
     transform: translateX(-50%);
     color: white;
     font-size: 750%;

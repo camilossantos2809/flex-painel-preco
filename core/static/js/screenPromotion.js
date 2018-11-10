@@ -14,7 +14,6 @@ function loadPromotion() {
     control++
 }
 
-// Load main function when page is ready
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", loadPromotion);
 } else {
