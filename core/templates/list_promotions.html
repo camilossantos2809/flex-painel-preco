@@ -25,14 +25,14 @@
     </thead>
     <tbody id="body-prod">
         {% for promo in promotions %}
-        <tr {{ promo.id }}>
+        <tr id="{{ promo.id }}">
             <td>
                 <a class="btn-flat" href="promotion/edit/{{promo.id}}">
                     <i class="material-icons">edit</i>
                 </a>
             </td>
             <td>
-                <a class="btn-flat" href="promotion/delete/{{promo.id}}">
+                <a class="btn-flat delete">
                     <i class="material-icons">delete</i>
                 </a>
             </td>
@@ -58,4 +58,8 @@
         <i class="large material-icons">add</i>
     </a>
 </div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/listPromotion.js' %}"></script>
 {% endblock %}

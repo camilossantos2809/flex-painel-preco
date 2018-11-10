@@ -111,7 +111,8 @@ def list_promotions(request):
 
 
 def delete_promotion(request, id):
-    return JsonResponse(list(PromotionsProd.objects.filter(id=id).delete()), safe=False)
+    if request.method == 'POST':
+        return JsonResponse(list(PromotionsProd.objects.filter(id=id).delete()), safe=False)
 
 
 def delete_screen(request, id):
