@@ -20,23 +20,29 @@
                 <label for="produto">Produto</label>
             </div>
             <div class="input-field col s12 m6 l4">
-                <a id="search-screen" class="prefix waves-effect waves-light btn-flat">
-                    <i class="material-icons">search</i>
-                </a>
-                <input id="screen" value="{{ promo.screen.cod }}" name="screen" type="number" class="validate" required>
-                <label for="screen">Tela</label>
+                <select name="screen">
+                    <option value="" disabled selected>Escolha uma opção</option>
+                    {% for screen in screens %}
+                    <option value="{{screen.cod}}" 
+                    {% if screen.cod == promo.screen.cod %} selected {% endif %}>
+                        {{ screen.cod }} - {{screen.descricao}}</option>
+                    {% endfor %}
+                </select>
+                <label>Tela</label>
             </div>
             <div class="input-field col s12 m6 l3">
                 <div class="switch">
                     <label>
-                        <input id="show-promotion" name="show-promotion" type="checkbox" {% if promo.show_promotion %} checked {% endif %}>
+                        <input id="show-promotion" name="show-promotion" type="checkbox" {% if promo.show_promotion %}
+                            checked {% endif %}>
                         <span class="lever"></span>
                         Oferta
                     </label>
                 </div>
                 <div class="switch">
                     <label>
-                        <input id="show-list" name="show-list" type="checkbox" {% if promo.show_list %} checked {% endif %}>
+                        <input id="show-list" name="show-list" type="checkbox" 
+                        {% if promo.show_list %} checked {% endif %}>
                         <span class="lever"></span>
                         Lista de preços
                     </label>

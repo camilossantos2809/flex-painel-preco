@@ -28,6 +28,8 @@ def screen_prices_list(request, screen):
 
 
 def add_update_promotion(request, id=None):
+    screens = Screen.objects.all()
+
     prod_promo = None
     if id:
         prod_promo = PromotionsProd.objects.get(id=id)
@@ -54,8 +56,8 @@ def add_update_promotion(request, id=None):
         prod_promo.save()
         messages.success(
             request, f'Produto {prod_promo.prod.cod} gravado')
-        return render(request, 'add_promotion.html', {'promo': prod_promo})
-    return render(request, 'add_promotion.html', {'promo': prod_promo})
+        return render(request, 'add_promotion.html', {'promo': prod_promo, 'screens': screens})
+    return render(request, 'add_promotion.html', {'promo': prod_promo, 'screens': screens})
 
 
 def list_products(request):
