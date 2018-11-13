@@ -108,4 +108,4 @@ class PromotionsProd(models.Model):
 
     class Meta:
         db_table = 'promotions_prod'
-        ordering = ('screen', 'prod',)
+        ordering = ('screen', '-show_promotion', 'prod',)
