@@ -11,9 +11,19 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import sys
+import json
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+path_config = os.path.join(BASE_DIR, 'config.json')
+if os.path.exists(path_config):
+    with open(path_config, "r") as file:
+        config_bd = json.load(file)
+else:
+    raise ImproperlyConfigured(
+        "Arquivo de configurações do banco de dados não localizado. Execute: python config.py")
 
 
 # Quick-start development settings - unsuitable for production
@@ -88,16 +98,19 @@ WSGI_APPLICATION = 'painel_precos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'erp_testes',
-        'USER': 'painel',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': config_bd['flex']['databasename'],
+        'USER': config_bd['flex']['username'],
+        'PASSWORD': config_bd['flex']['password'],
+        'HOST': config_bd['flex']['ip'],
+        'PORT': config_bd['flex']['port'],
     }
 }
 
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+
 if not DEBUG:
-    CONN_MAX_AGE = 60
+    CONN_MAX_AGE = 600
 
 
 # Password validation
